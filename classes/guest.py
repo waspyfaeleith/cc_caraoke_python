@@ -8,3 +8,6 @@ class Guest:
 
     def get_cash(self):
         return self._cash
+
+    def can_afford(self, amount):
+        return self._cash >= amount

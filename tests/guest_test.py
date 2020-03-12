@@ -16,5 +16,14 @@ class TestGuest(unittest.TestCase):
     def test_guest_has_cash(self):
         self.assertEqual(20, self._guest.get_cash())
 
+    def test_guest_can_afford_10(self):
+        self.assertEqual(True, self._guest.can_afford(10))
+
+    def test_guest_can_afford_20(self):
+        self.assertEqual(True, self._guest.can_afford(20))
+
+    def test_guest_cannot_afford_30(self):
+        self.assertEqual(False, self._guest.can_afford(30))
+
 if __name__ == '__main__':
     unittest.main()
