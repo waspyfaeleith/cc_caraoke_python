@@ -6,3 +6,6 @@ class Room:
 
     def get_name(self):
         return self._name
+
+    def number_of_guests(self):
+        return len(self._guests)
