@@ -27,6 +27,16 @@ class TestRoom(unittest.TestCase):
         room.check_in_guest(guest)
         self.assertEqual(1, room.number_of_guests())
 
+    def test_can_check_in_multiple_guests(self):
+        room = Room("The Blues Room")
+        jack = Guest("Jack")
+        victor = Guest("Victor")
+        isa = Guest("Isa")
+
+        guests = [jack, victor, isa]
+        room.check_in_guests(guests)
+        self.assertEqual(3, room.number_of_guests())
+
     def test_can_check_guest_out(self):
         room = Room("The Blues Room")
         guest = Guest("Victor")
