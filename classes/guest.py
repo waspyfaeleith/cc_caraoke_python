@@ -11,3 +11,6 @@ class Guest:
 
     def can_afford(self, amount):
         return self._cash >= amount
+
+    def pay(self, amount):
+        self._cash -= amount

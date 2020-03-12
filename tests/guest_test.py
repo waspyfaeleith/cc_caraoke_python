@@ -25,5 +25,9 @@ class TestGuest(unittest.TestCase):
     def test_guest_cannot_afford_30(self):
         self.assertEqual(False, self._guest.can_afford(30))
 
+    def test_guest_can_pay_amount(self):
+        self._guest.pay(10)
+        self.assertEqual(10, self._guest.get_cash())
+
 if __name__ == '__main__':
     unittest.main()
