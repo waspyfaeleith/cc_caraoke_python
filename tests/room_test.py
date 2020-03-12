@@ -49,6 +49,14 @@ class TestRoom(unittest.TestCase):
         self._room.add_song(song)
         self.assertEqual(1, self._room.number_of_songs())
 
+    def test_room_has_free_spaces_equal_to_capacity_at_start(self):
+        self.assertEqual(3, self._room.free_spaces())
+
+    def test_free_spaces_goes_down_when_guest_checked_in(self):
+        guest = Guest("Victor")
+        self._room.check_in_guest(guest)
+        self.assertEqual(2, self._room.free_spaces())
+
 
 if __name__ == '__main__':
     unittest.main()
