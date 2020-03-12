@@ -10,6 +10,13 @@ from classes.song import Song
 class TestRoom(unittest.TestCase):
 
     def setUp(self):
+        self._jack = Guest("Jack")
+        self._victor = Guest("Victor")
+        self._isa = Guest("Isa")
+
+        self._guests = [self._jack, self._victor, self._isa]
+
+        self._winston = Guest("Winston")
         self._room = Room("The Metal Room", 3)
 
     def test_room_has_name(self):
@@ -25,23 +32,16 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(3, self._room.get_capacity())
 
     def test_can_check_in_guest(self):
-        guest = Guest("Victor")
-        self._room.check_in_guest(guest)
+        self._room.check_in_guest(self._victor)
         self.assertEqual(1, self._room.number_of_guests())
 
     def test_can_check_in_multiple_guests(self):
-        jack = Guest("Jack")
-        victor = Guest("Victor")
-        isa = Guest("Isa")
-
-        guests = [jack, victor, isa]
-        self._room.check_in_guests(guests)
+        self._room.check_in_guests(self._guests)
         self.assertEqual(3, self._room.number_of_guests())
 
     def test_can_check_guest_out(self):
-        guest = Guest("Victor")
-        self._room.check_in_guest(guest)
-        self._room.check_out_guest(guest)
+        self._room.check_in_guest(self._victor)
+        self._room.check_out_guest(self._victor)
         self.assertEqual(0, self._room.number_of_guests())
 
     def test_can_add_song_to_room(self):
@@ -53,31 +53,17 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(3, self._room.free_spaces())
 
     def test_free_spaces_goes_down_when_guest_checked_in(self):
-        guest = Guest("Victor")
-        self._room.check_in_guest(guest)
+        self._room.check_in_guest(self._victor)
         self.assertEqual(2, self._room.free_spaces())
 
     def test_cannot_check_in_guest_if_room_is_full(self):
-        jack = Guest("Jack")
-        victor = Guest("Victor")
-        isa = Guest("Isa")
-        winston = Guest("Winston")
-
-        guests = [jack, victor, isa]
-        self._room.check_in_guests(guests)
-        self._room.check_in_guest(winston)
+        self._room.check_in_guests(self._guests)
+        self._room.check_in_guest(self._winston)
         self.assertEqual(3, self._room.number_of_guests())
 
     def test_cannot_check_in_multiple_guest_if_not_enough_free_space(self):
-        winston = Guest("Winston")
-        self._room.check_in_guest(winston)
-        jack = Guest("Jack")
-        victor = Guest("Victor")
-        isa = Guest("Isa")
-        winston = Guest("Winston")
-
-        guests = [jack, victor, isa]
-        self._room.check_in_guests(guests)
+        self._room.check_in_guest(self._winston)
+        self._room.check_in_guests(self._guests)
         self.assertEqual(1, self._room.number_of_guests())
 
 
