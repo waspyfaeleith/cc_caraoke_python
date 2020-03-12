@@ -17,7 +17,7 @@ class TestRoom(unittest.TestCase):
         self._guests = [self._jack, self._victor, self._isa]
 
         self._winston = Guest("Winston", 5)
-        self._room = Room("The Metal Room", 3)
+        self._room = Room("The Metal Room", 3, 10)
 
     def test_room_has_name(self):
         self.assertEqual("The Metal Room", self._room.get_name())
@@ -72,6 +72,9 @@ class TestRoom(unittest.TestCase):
         self._room.check_in_guest(self._winston)
         self._room.check_in_guests(self._guests)
         self.assertEqual(1, self._room.number_of_guests())
+
+    def test_room_has_fee(self):
+        self.assertEqual(10, self._room.get_fee())
 
 
 if __name__ == '__main__':
