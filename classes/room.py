@@ -4,12 +4,16 @@ class Room:
         self._guests = []
         self._songs = []
         self._capacity = capacity
+        self._till = 0
 
     def get_name(self):
         return self._name
 
     def get_capacity(self):
         return self._capacity
+
+    def get_till(self):
+        return self._till
 
     def number_of_guests(self):
         return len(self._guests)
@@ -34,3 +38,6 @@ class Room:
 
     def free_spaces(self):
         return self._capacity - len(self._guests)
+
+    def add_to_till(self, amount):
+        self._till += amount

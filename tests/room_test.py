@@ -31,6 +31,13 @@ class TestRoom(unittest.TestCase):
     def test_room_has_capacity(self):
         self.assertEqual(3, self._room.get_capacity())
 
+    def test_room_till_starts_empty(self):
+        self.assertEqual(0, self._room.get_till())
+
+    def test_can_add_to_till(self):
+        self._room.add_to_till(10)
+        self.assertEqual(10, self._room.get_till())
+
     def test_can_check_in_guest(self):
         self._room.check_in_guest(self._victor)
         self.assertEqual(1, self._room.number_of_guests())
