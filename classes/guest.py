@@ -21,3 +21,9 @@ class Guest:
 
     def pay(self, amount):
         self._cash -= amount
+
+    def cheer(self, songs):
+        for song in songs:
+            if song.equals(self._favourite_song):
+                return "Whoo Hoo!"
+        return None
