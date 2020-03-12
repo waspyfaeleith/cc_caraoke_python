@@ -5,6 +5,7 @@ import unittest
 
 from classes.room import Room
 from classes.guest import Guest
+from classes.song import Song
 
 class TestRoom(unittest.TestCase):
 
@@ -32,6 +33,13 @@ class TestRoom(unittest.TestCase):
         room.check_in_guest(guest)
         room.check_out_guest(guest)
         self.assertEqual(0, room.number_of_guests())
+
+    def test_can_add_song_to_room(self):
+        room = Room("The Metal Room")
+        song = Song("The Number of the Beast", "Iron Maiden")
+        room.add_song(song)
+        self.assertEqual(1, room.number_of_songs())
+
 
 if __name__ == '__main__':
     unittest.main()
