@@ -10,13 +10,13 @@ from classes.song import Song
 class TestRoom(unittest.TestCase):
 
     def setUp(self):
-        self._jack = Guest("Jack")
-        self._victor = Guest("Victor")
-        self._isa = Guest("Isa")
+        self._jack = Guest("Jack", 20)
+        self._victor = Guest("Victor", 15)
+        self._isa = Guest("Isa", 100)
 
         self._guests = [self._jack, self._victor, self._isa]
 
-        self._winston = Guest("Winston")
+        self._winston = Guest("Winston", 5)
         self._room = Room("The Metal Room", 3)
 
     def test_room_has_name(self):
