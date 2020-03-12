@@ -26,7 +26,9 @@ class Room:
         return len(self._songs)
 
     def check_in_guest(self, guest):
-        if self.free_spaces() > 0:
+        if self.free_spaces() > 0 and guest.can_afford(self._fee):
+           guest.pay(self._fee)
+           self.add_to_till(self._fee)
            self._guests.append(guest)
 
     def check_in_guests(self, guests):

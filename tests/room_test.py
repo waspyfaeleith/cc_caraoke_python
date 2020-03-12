@@ -16,7 +16,7 @@ class TestRoom(unittest.TestCase):
 
         self._guests = [self._jack, self._victor, self._isa]
 
-        self._winston = Guest("Winston", 5)
+        self._winston = Guest("Winston", 10)
         self._room = Room("The Metal Room", 3, 10)
 
     def test_room_has_name(self):
@@ -75,6 +75,20 @@ class TestRoom(unittest.TestCase):
 
     def test_room_has_fee(self):
         self.assertEqual(10, self._room.get_fee())
+
+    def test_can_check_guest_if_cannot_afford_it(self):
+        self._room.check_in_guest(self._winston)
+        self.assertEqual(1, self._room.number_of_guests())
+        self.assertEqual(10, self._room.get_till())
+
+    def test_cannot_check_guest_in_if_cannot_afford_it(self):
+        tam = Guest("Tam", 2)
+        self._room.check_in_guest(tam)
+
+        self.assertEqual(0, self._room.number_of_guests())
+        self.assertEqual(0, self._room.get_till())
+
+
 
 
 if __name__ == '__main__':
