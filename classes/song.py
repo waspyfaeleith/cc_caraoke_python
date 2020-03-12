@@ -8,3 +8,6 @@ class Song:
 
     def get_artist(self):
         return self._artist
+
+    def equals(self, song):
+        return song.get_title() == self._title and song.get_artist() == self._artist
