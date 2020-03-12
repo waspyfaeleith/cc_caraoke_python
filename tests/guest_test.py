@@ -4,17 +4,22 @@ sys.path.append("..")
 import unittest
 
 from classes.guest import Guest
+from classes.song import Song
 
 class TestGuest(unittest.TestCase):
 
     def setUp(self):
-        self._guest = Guest("Jack", 20)
+        song = Song("Ace of Spades", "Motorhead")
+        self._guest = Guest("Jack", 20, song)
 
     def test_guest_has_name(self):
         self.assertEqual("Jack", self._guest.get_name())
 
     def test_guest_has_cash(self):
         self.assertEqual(20, self._guest.get_cash())
+
+    def test_guest_has_favourite_song(self):
+        self.assertEqual("Ace of Spades", self._guest.get_favourite_song().get_title())
 
     def test_guest_can_afford_10(self):
         self.assertEqual(True, self._guest.can_afford(10))

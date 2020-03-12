@@ -1,13 +1,17 @@
 class Guest:
-    def __init__(self, name, cash):
+    def __init__(self, name, cash, song):
         self._name = name
         self._cash = cash
+        self._favourite_song = song
 
     def get_name(self):
         return self._name
 
     def get_cash(self):
         return self._cash
+
+    def get_favourite_song(self):
+        return self._favourite_song
 
     def can_afford(self, amount):
         return self._cash >= amount
