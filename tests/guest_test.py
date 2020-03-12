@@ -21,6 +21,11 @@ class TestGuest(unittest.TestCase):
     def test_guest_has_favourite_song(self):
         self.assertEqual("Ace of Spades", self._guest.get_favourite_song().get_title())
 
+    def test_guest_can_change_favourite_song(self):
+        song = Song("The Clansman", "Iron Maiden")
+        self._guest.set_favourite_song(song)
+        self.assertEqual("The Clansman", self._guest.get_favourite_song().get_title())
+
     def test_guest_can_afford_10(self):
         self.assertEqual(True, self._guest.can_afford(10))
 

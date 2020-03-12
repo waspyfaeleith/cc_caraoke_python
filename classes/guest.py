@@ -13,6 +13,9 @@ class Guest:
     def get_favourite_song(self):
         return self._favourite_song
 
+    def set_favourite_song(self, song):
+        self._favourite_song = song
+
     def can_afford(self, amount):
         return self._cash >= amount
 
