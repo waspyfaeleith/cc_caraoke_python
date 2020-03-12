@@ -57,6 +57,17 @@ class TestRoom(unittest.TestCase):
         self._room.check_in_guest(guest)
         self.assertEqual(2, self._room.free_spaces())
 
+    def test_cannot_check_in_guest_if_room_is_full(self):
+        jack = Guest("Jack")
+        victor = Guest("Victor")
+        isa = Guest("Isa")
+        winston = Guest("Winston")
+
+        guests = [jack, victor, isa]
+        self._room.check_in_guests(guests)
+        self._room.check_in_guest(winston)
+        self.assertEqual(3, self._room.number_of_guests())
+
 
 if __name__ == '__main__':
     unittest.main()

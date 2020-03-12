@@ -18,7 +18,8 @@ class Room:
         return len(self._songs)
 
     def check_in_guest(self, guest):
-        self._guests.append(guest)
+        if self.free_spaces() > 0:
+           self._guests.append(guest)
 
     def check_in_guests(self, guests):
         for guest in guests:
