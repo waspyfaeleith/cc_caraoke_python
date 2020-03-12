@@ -5,7 +5,7 @@ import unittest
 
 from classes.song import Song
 
-class TestGuest(unittest.TestCase):
+class TestSong(unittest.TestCase):
 
     def test_song_has_title(self):
         song = Song("Highway To Hell", "AC/DC")
