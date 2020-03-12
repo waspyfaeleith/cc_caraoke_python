@@ -10,13 +10,19 @@ from classes.song import Song
 class TestRoom(unittest.TestCase):
 
     def setUp(self):
-        self._jack = Guest("Jack", 20)
-        self._victor = Guest("Victor", 15)
-        self._isa = Guest("Isa", 100)
+        self._song_1 = Song("Highway to Hell", "AC/DC")
+        self._song_2 = Song("The Clansman", "Iron Maiden")
+        self._song_3 = Song("Ace of Spades", "Motorhead")
+
+        self._songs = [self._song_1, self._song_2, self._song_3]
+
+        self._jack = Guest("Jack", 20, self._song_1)
+        self._victor = Guest("Victor", 15, self._song_2)
+        self._isa = Guest("Isa", 100, self._song_3)
 
         self._guests = [self._jack, self._victor, self._isa]
 
-        self._winston = Guest("Winston", 10)
+        self._winston = Guest("Winston", 10, self._song_2)
         self._room = Room("The Metal Room", 3, 10)
 
     def test_room_has_name(self):
@@ -56,6 +62,10 @@ class TestRoom(unittest.TestCase):
         self._room.add_song(song)
         self.assertEqual(1, self._room.number_of_songs())
 
+    def test_can_add_multiple_songs_to_room(self):
+        self._room.add_songs(self._songs)
+        self.assertEqual(3, self._room.number_of_songs())
+
     def test_room_has_free_spaces_equal_to_capacity_at_start(self):
         self.assertEqual(3, self._room.free_spaces())
 
@@ -80,15 +90,20 @@ class TestRoom(unittest.TestCase):
         self._room.check_in_guest(self._winston)
         self.assertEqual(1, self._room.number_of_guests())
         self.assertEqual(10, self._room.get_till())
+        self.assertEqual(0, self._winston.get_cash())
 
     def test_cannot_check_guest_in_if_cannot_afford_it(self):
-        tam = Guest("Tam", 2)
+        tam = Guest("Tam", 2, self._song_1)
         self._room.check_in_guest(tam)
 
         self.assertEqual(0, self._room.number_of_guests())
         self.assertEqual(0, self._room.get_till())
+        self.assertEqual(2, tam.get_cash())
 
-
+    def test_cheers_for_guests_fave_song(self):
+        self._room.check_in_guest(self._winston)
+        songs = self._songs
+        self.assertEqual("Whoo Hoo!", self._room._guests[0].cheer(songs))
 
 
 if __name__ == '__main__':

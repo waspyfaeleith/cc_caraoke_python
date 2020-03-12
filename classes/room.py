@@ -42,6 +42,10 @@ class Room:
     def add_song(self, song):
         self._songs.append(song)
 
+    def add_songs(self, songs):
+        for song in songs:
+            self._songs.append(song)
+
     def free_spaces(self):
         return self._capacity - len(self._guests)
 
